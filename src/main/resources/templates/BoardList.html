@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>게시판</h1>
+<button type="button" onclick="location.href='makePost'">작성하기</button>
+
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th style="width:30px">#</th>
+                <th style="width:500px">제목</th>
+                <th style="width:100px">작성자</th>
+                <th style="width:100px">조회수</th>
+                <th style="width:100px">등록일자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.bnum}" style="text-align:center" ></td>
+                <td style="text-align:center"><a th:href="@{/board/{bnum}(bnum=${board.bnum})}" th:text="${board.subject}">제목</a></td>
+                <td th:text="${board.name}" style="text-align:center"></td>
+                <td th:text="${board.viewCnt}" style="text-align:center"></td>
+                <td th:text="${board.regdate}" style="text-align:center"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
