@@ -7,7 +7,8 @@
 <body>
 <div>
     <a th:href="@{/boardList}"><button>홈</button></a>
-    <a th:href="@{/delete/{bnum}(bnum = ${board.bnum})}"><button>지우기</button></a>
+    <a th:href="@{/board/{bnum}/edit(bnum = ${board.bnum})}"><button>수정하기</button></a>
+    <a th:href="@{/board/{bnum}/delete(bnum = ${board.bnum})}"><button>지우기</button></a>
 </div>
 
 <div class="container">

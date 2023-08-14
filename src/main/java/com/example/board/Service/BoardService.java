@@ -39,4 +39,9 @@ public class BoardService {
         boardRepository.deleteOne(bnum);
     }
 
+    public Long edit(Board board){
+        boardRepository.edit(board);
+        return board.getBnum();
+    }
+
 }

@@ -12,4 +12,5 @@ public interface BoardRepository {
     Optional<Board> findByBnum(Long bnum);
     void deleteOne(Long bnum);
     void countView(Long bnum);
+    Board edit(Board board);
 }

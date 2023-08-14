@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +40,31 @@ public class BoardController {
         return "page";
     }
 
-    @GetMapping("delete/{bnum}")
-    public String delete(@PathVariable("bnum") Long bnum){
+    @GetMapping("board/{bnum}/edit")
+    public String edit(@PathVariable("bnum") Long bnum, Model model){
+        Optional<Board> result = boardService.findByBnum(bnum);
+        Board board = result.get();
+
+        model.addAttribute(board);
+
+        return "editPost";
+    }
+
+    @PostMapping("board/{bnum}/edit")
+    public String edit1(@PathVariable("bnum") Long bnum, BoardForm boardForm){
+        Optional<Board> result = boardService.findByBnum(bnum);
+
+        Board board = result.get();
+        board.setSubject(boardForm.getSubject());
+        board.setContent(boardForm.getContent());
+        board.setName(boardForm.getName());
+
+        return "redirect:/board/{bnum}";
+    }
+
+    @GetMapping("board/{bnum}/delete")
+    public String delete(@PathVariable("bnum") Long bnum) {
+
         boardService.deleteOne(bnum);
         return "redirect:/boardList";
     }
@@ -51,7 +75,7 @@ public class BoardController {
     }
 
     @PostMapping("makePost")
-    public String write1(BoardForm boardForm){
+    public String writePost(BoardForm boardForm){
         Board board = new Board();
 
         board.setSubject(boardForm.getSubject());

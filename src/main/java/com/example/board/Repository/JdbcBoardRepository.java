@@ -42,4 +42,9 @@ public class JdbcBoardRepository implements BoardRepository{
     public void countView(Long bnum) {
 
     }
+
+    @Override
+    public Board edit(Board board) {
+        return null;
+    }
 }

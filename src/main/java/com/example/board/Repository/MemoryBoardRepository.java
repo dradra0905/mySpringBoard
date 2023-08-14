@@ -40,4 +40,10 @@ public class MemoryBoardRepository implements BoardRepository{
         board.setViewCnt(vc + 1);
         store.put(board.getBnum(),board);
     }
+
+    @Override
+    public Board edit(Board board) {
+        store.put(board.getBnum(),board);
+        return board;
+    }
 }
