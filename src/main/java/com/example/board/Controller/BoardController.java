@@ -1,7 +1,9 @@
 package com.example.board.Controller;
 
 import com.example.board.Domain.Board;
+import com.example.board.Domain.Comment;
 import com.example.board.Service.BoardService;
+import com.example.board.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.yaml.snakeyaml.tokens.CommentToken;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +23,13 @@ import java.util.Optional;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
+
 
     @Autowired
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, CommentService commentService) {
         this.boardService = boardService;
+        this.commentService = commentService;
     }
 
     @GetMapping("boardList")
@@ -81,9 +89,11 @@ public class BoardController {
         board.setSubject(boardForm.getSubject());
         board.setContent(boardForm.getContent());
         board.setRegdate(boardForm.getRegdate());
+        board.setComments(new ArrayList<Comment>());
         board.setName(boardForm.getName());
 
         boardService.join(board);
         return "redirect:/boardList";
     }
+
 }

@@ -1,5 +1,10 @@
 package com.example.board.Domain;
 
+import org.yaml.snakeyaml.tokens.CommentToken;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
     private Long bnum;
     private String subject;
@@ -7,6 +12,15 @@ public class Board {
     private String name;
     private int viewCnt;
     private String regdate;
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public Long getBnum() {
         return bnum;
