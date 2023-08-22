@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Page</title>
 </head>
+
+
 <body>
 <div>
     <a th:href="@{/boardList}"><button>홈</button></a>
@@ -16,6 +18,11 @@
         <h1 th:text="${board.subject}"></h1>
         <p>작성자: [[${board.name}]]</p>
         <p>조회수: [[${board.viewCnt}]]</p>
+        <div class="container">
+            <a th:text="'좋아요: ' + ${board.like}"></a>
+            <a th:href="@{/board/{bnum}/like(bnum = ${board.bnum})}"><button type="submit">좋아요</button></a>
+        </div>
+
         <textarea th:text="${board.content}" cols="50" rows="25" style="resize: none;" readonly></textarea>
     </div>
 
@@ -37,12 +44,18 @@
         <table class="table" border="1" style="table-layout:fixed;word-break:break-all;height=auto">
             <thead>
             <tr>
+                <th>댓글 번호</th>
                 <th width="375">댓글 내용</th>
+                <th>댓글 지우기</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="com : ${board.comments}">
-                <td th:text="${com.comment}" ></td>
+            <tr th:each="com : ${comments}">
+                <td th:text="${com.value.cnum}"></td>
+                <td th:text="${com.value.comment}" ></td>
+                <td style="text-align:center">
+                    <a th:href="@{/board/{bnum}/comment/delete/{cnum}(bnum = ${board.bnum}, cnum = ${com.value.cnum})}"><button>X</button></a>
+                </td>
             </tr>
             </tbody>
         </table>

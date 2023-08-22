@@ -34,6 +34,20 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     @Override
+    public void like(Long bnum) {
+        Board board = store.get(bnum);
+
+        Long like = board.getLike();
+        like += 1;
+        board.setLike(like);
+
+        int vc = board.getViewCnt();
+        board.setViewCnt(vc - 1);
+
+        store.put(board.getBnum(), board);
+    }
+
+    @Override
     public void countView(Long bnum) {
         Board board = store.get(bnum);
         int vc = board.getViewCnt();

@@ -13,4 +13,5 @@ public interface BoardRepository {
     void deleteOne(Long bnum);
     void countView(Long bnum);
     Board edit(Board board);
+    void like(Long bnum);
 }

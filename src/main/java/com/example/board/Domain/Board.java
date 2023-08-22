@@ -3,7 +3,9 @@ package com.example.board.Domain;
 import org.yaml.snakeyaml.tokens.CommentToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Board {
     private Long bnum;
@@ -12,14 +14,31 @@ public class Board {
     private String name;
     private int viewCnt;
     private String regdate;
-    private List<Comment> comments;
+    private Long like;
 
-    public List<Comment> getComments() {
+    private Map<Long, Comment> comments = new HashMap<>();
+    private long sequence = 0;
+
+    public Comment save(Comment comment) {
+        comment.setCnum(++sequence);
+        comments.put(comment.getCnum(),comment);
+        return comment;
+    }
+
+    public Map<Long, Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Map<Long, Comment> comments) {
         this.comments = comments;
+    }
+
+    public Long getLike() {
+        return like;
+    }
+
+    public void setLike(Long like) {
+        this.like = like;
     }
 
     public Long getBnum() {

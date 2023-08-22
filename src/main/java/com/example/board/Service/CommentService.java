@@ -13,5 +13,19 @@ import java.util.Optional;
 
 @Service
 public class CommentService {
+    private final CommentRepository commentRepository;
 
+    @Autowired
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
+
+    public Long join(Comment comment, Long sequence){
+        commentRepository.save(comment, sequence);
+        return comment.getBnum();
+    }
+
+    public void delete(Long cnum){
+        commentRepository.deleteOne(cnum);
+    }
 }

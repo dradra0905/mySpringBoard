@@ -2,9 +2,18 @@ package com.example.board.Domain;
 
 public class Comment {
     private Long bnum;
+    private Long cnum;
     private String name;
     private String comment;
     private String regdate;
+
+    public Long getCnum() {
+        return cnum;
+    }
+
+    public void setCnum(Long cnum) {
+        this.cnum = cnum;
+    }
 
     public Long getBnum() {
         return bnum;

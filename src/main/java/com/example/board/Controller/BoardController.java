@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.yaml.snakeyaml.tokens.CommentToken;
 
 import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class BoardController {
@@ -43,8 +40,10 @@ public class BoardController {
     public String page(@PathVariable("bnum") Long bnum, Model model){
         Optional<Board> result = boardService.findByBnum(bnum);
         Board board = result.get();
+        Map<Long, Comment> comments = board.getComments();
         boardService.countView(bnum);
         model.addAttribute("board",board);
+        model.addAttribute("comments", comments);
         return "page";
     }
 
@@ -77,6 +76,13 @@ public class BoardController {
         return "redirect:/boardList";
     }
 
+    @GetMapping("board/{bnum}/like")
+    public String like(@PathVariable("bnum") Long bnum) {
+
+        boardService.like(bnum);
+        return "redirect:/board/{bnum}";
+    }
+
     @GetMapping("makePost")
     public String write(){
         return "makePost";
@@ -89,8 +95,8 @@ public class BoardController {
         board.setSubject(boardForm.getSubject());
         board.setContent(boardForm.getContent());
         board.setRegdate(boardForm.getRegdate());
-        board.setComments(new ArrayList<Comment>());
         board.setName(boardForm.getName());
+        board.setLike(0L);
 
         boardService.join(board);
         return "redirect:/boardList";

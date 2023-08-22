@@ -47,4 +47,9 @@ public class JdbcBoardRepository implements BoardRepository{
     public Board edit(Board board) {
         return null;
     }
+
+    @Override
+    public void like(Long bnum) {
+
+    }
 }

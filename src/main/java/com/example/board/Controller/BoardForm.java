@@ -9,6 +9,15 @@ public class BoardForm {
     private String name;
     private String regdate;
     private LocalDateTime localDateTime = LocalDateTime.now();
+    private Long like;
+
+    public Long getLike() {
+        return like;
+    }
+
+    public void setLike(Long like) {
+        this.like = like;
+    }
 
     public String getName() {
         return name;
