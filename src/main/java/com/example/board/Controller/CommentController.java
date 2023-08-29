@@ -23,7 +23,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @PostMapping("board/{bnum}/comment")
+    /*@PostMapping("board/{bnum}/comment")
     public String writeComment(@PathVariable("bnum") Long bnum, CommentForm commentForm){
         Optional<Board> result = boardService.findByBnum(bnum);
         Board board = result.get();
@@ -47,5 +47,5 @@ public class CommentController {
         comments.remove(cnum);
 
         return "redirect:/board/{bnum}";
-    }
+    }*/
 }

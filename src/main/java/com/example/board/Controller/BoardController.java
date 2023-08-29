@@ -38,12 +38,12 @@ public class BoardController {
 
     @GetMapping("board/{bnum}")
     public String page(@PathVariable("bnum") Long bnum, Model model){
+        boardService.countView(bnum);
         Optional<Board> result = boardService.findByBnum(bnum);
         Board board = result.get();
-        Map<Long, Comment> comments = board.getComments();
-        boardService.countView(bnum);
+//        Map<Long, Comment> comments = board.getComments();
         model.addAttribute("board",board);
-        model.addAttribute("comments", comments);
+//        model.addAttribute("comments", comments);
         return "page";
     }
 
@@ -62,9 +62,11 @@ public class BoardController {
         Optional<Board> result = boardService.findByBnum(bnum);
 
         Board board = result.get();
-        board.setSubject(boardForm.getSubject());
-        board.setContent(boardForm.getContent());
-        board.setName(boardForm.getName());
+        board.setBsubject(boardForm.getBsubject());
+        board.setBcontent(boardForm.getBcontent());
+        board.setBname(boardForm.getBname());
+
+        boardService.edit(board);
 
         return "redirect:/board/{bnum}";
     }
@@ -92,11 +94,11 @@ public class BoardController {
     public String writePost(BoardForm boardForm){
         Board board = new Board();
 
-        board.setSubject(boardForm.getSubject());
-        board.setContent(boardForm.getContent());
-        board.setRegdate(boardForm.getRegdate());
-        board.setName(boardForm.getName());
-        board.setLike(0L);
+        board.setBsubject(boardForm.getBsubject());
+        board.setBcontent(boardForm.getBcontent());
+        board.setBregdate(boardForm.getBregdate());
+        board.setBname(boardForm.getBname());
+        board.setBlike(0L);
 
         boardService.join(board);
         return "redirect:/boardList";

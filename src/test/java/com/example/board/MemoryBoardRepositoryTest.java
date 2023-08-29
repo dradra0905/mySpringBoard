@@ -10,8 +10,8 @@ public class MemoryBoardRepositoryTest {
     @Test
     public void save(){
         Board board = new Board();
-        board.setSubject("hehe");
-        board.setContent("ehehe");
+        board.setBsubject("hehe");
+        board.setBcontent("ehehe");
 
         repository.save(board);
     }

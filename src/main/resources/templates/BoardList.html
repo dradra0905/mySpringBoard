@@ -23,10 +23,10 @@
             <tbody>
             <tr th:each="board : ${boards}">
                 <td th:text="${board.bnum}" style="text-align:center" ></td>
-                <td style="text-align:center"><a th:href="@{/board/{bnum}(bnum=${board.bnum})}" th:text="${board.subject}">제목</a></td>
-                <td th:text="${board.name}" style="text-align:center"></td>
-                <td th:text="${board.viewCnt}" style="text-align:center"></td>
-                <td th:text="${board.regdate}" style="text-align:center"></td>
+                <td style="text-align:center"><a th:href="@{/board/{bnum}(bnum=${board.bnum})}" th:text="${board.bsubject}">제목</a></td>
+                <td th:text="${board.bname}" style="text-align:center"></td>
+                <td th:text="${board.bviewcnt}" style="text-align:center"></td>
+                <td th:text="${board.bregdate}" style="text-align:center"></td>
             </tr>
             </tbody>
         </table>

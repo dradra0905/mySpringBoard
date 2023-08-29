@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
 public class MemoryBoardRepository implements BoardRepository{
     private static Map<Long, Board> store = new HashMap<>();
     private static long sequence = 0;
@@ -37,12 +36,12 @@ public class MemoryBoardRepository implements BoardRepository{
     public void like(Long bnum) {
         Board board = store.get(bnum);
 
-        Long like = board.getLike();
+        Long like = board.getBlike();
         like += 1;
-        board.setLike(like);
+        board.setBlike(like);
 
-        int vc = board.getViewCnt();
-        board.setViewCnt(vc - 1);
+        int vc = board.getBviewcnt();
+        board.setBviewcnt(vc - 1);
 
         store.put(board.getBnum(), board);
     }
@@ -50,8 +49,8 @@ public class MemoryBoardRepository implements BoardRepository{
     @Override
     public void countView(Long bnum) {
         Board board = store.get(bnum);
-        int vc = board.getViewCnt();
-        board.setViewCnt(vc + 1);
+        int vc = board.getBviewcnt();
+        board.setBviewcnt(vc + 1);
         store.put(board.getBnum(),board);
     }
 

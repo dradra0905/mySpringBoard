@@ -4,47 +4,51 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BoardForm {
-    private String subject;
-    private String content;
-    private String name;
-    private String regdate;
+    private String bsubject;
+    private String bcontent;
+    private String bname;
+    private String bregdate;
     private LocalDateTime localDateTime = LocalDateTime.now();
-    private Long like;
+    private Long blike;
 
-    public Long getLike() {
-        return like;
+    public String getBsubject() {
+        return bsubject;
     }
 
-    public void setLike(Long like) {
-        this.like = like;
+    public void setBsubject(String bsubject) {
+        this.bsubject = bsubject;
     }
 
-    public String getName() {
-        return name;
+    public String getBcontent() {
+        return bcontent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBcontent(String bcontent) {
+        this.bcontent = bcontent;
     }
 
-    public String getRegdate() {
-        regdate = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        return regdate;
+    public String getBname() {
+        return bname;
     }
 
-    public String getSubject() {
-        return subject;
+    public void setBname(String bname) {
+        this.bname = bname;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public String getBregdate() {
+        bregdate = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return bregdate;
     }
 
-    public String getContent() {
-        return content;
+    public void setBregdate(String bregdate) {
+        this.bregdate = bregdate;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public Long getBlike() {
+        return blike;
+    }
+
+    public void setBlike(Long blike) {
+        this.blike = blike;
     }
 }
